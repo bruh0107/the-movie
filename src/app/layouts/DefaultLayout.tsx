@@ -6,7 +6,9 @@ const DefaultLayout = () => {
         <>
             <AppHeader />
             <main>
-                <Outlet />
+                <div>
+                    <Outlet />
+                </div>
             </main>
         </>
     )
