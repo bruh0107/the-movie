@@ -1,7 +1,35 @@
 @import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+    --color-white: #fdfdf5;
+    --color-basic: #3d568f;
+    --color-accent: #9fbaf1;
+    --color-second: #eaf3b2;
+
+    --color-black: #181818;
+
+    --font-main: 'Nunito', sans-serif;
+    --font-second: 'Unbounded', sans-serif;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-main), sans-serif;
+}
+
+body {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.main-container {
+    max-width: 1640px;
+    padding-inline: 10px;
+    margin: 0 auto;
 }
