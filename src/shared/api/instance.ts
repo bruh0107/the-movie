@@ -10,12 +10,16 @@ export const api: AxiosInstance = axios.create({
 })
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('token')
+    config.params = {
+        api_key: import.meta.env.VITE_TMDB_API_KEY,
+        language: 'ru-RU',
+        ...config.params
+    }
 
+    const token = localStorage.getItem('token')
     if(token) {
         config.headers.Authorization = `Bearer ${token}`
     }
-
     return config
 })
 
