@@ -7,8 +7,8 @@ const MovieBannerList = () => {
     const sliceTrendMovies = trendMovies?.slice(0, 3)
 
     const CARD_POSITION = [
-        "z-3 top-17.5 right-50",
-        "z-2 -top-12.5 -right-2.5",
+        "z-2 top-17.5 right-50",
+        "z-3 -top-12.5 -right-2.5",
         "z-1 -top-40 -right-52.5"
     ]
 
