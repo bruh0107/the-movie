@@ -1,7 +1,9 @@
+import { HomeBanner } from "@/widgets/home";
+
 const HomePage = () => {
     return (
         <>
-            <h1 className="text-accent">Главная страница</h1>
+            <HomeBanner />
         </>
     )
 }
