@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
-import { HomePage } from "@/pages";
+import { ApprovedPage, HomePage } from "@/pages";
 
 export const router = createBrowserRouter([
     {
@@ -10,6 +10,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage />
+            },
+            {
+                path: '/approved',
+                element: <ApprovedPage />
             }
         ]
     }
