@@ -11,6 +11,13 @@
 
     --font-main: 'Nunito', sans-serif;
     --font-second: 'Unbounded', sans-serif;
+
+    --animate-marquee: marquee 25s linear infinite;
+
+    @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
 }
 
 html {
@@ -20,6 +27,7 @@ html {
 body {
     background: var(--color-white);
     color: var(--color-black);
+    overflow-x: hidden;
 }
 
 .main-container {

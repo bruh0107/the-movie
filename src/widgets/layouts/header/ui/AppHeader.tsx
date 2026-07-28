@@ -17,7 +17,7 @@ const AppHeader = () => {
                 <HeaderNavigation />
                 {
                     isAuth
-                        ? (<h2>Привет, {user?.username}</h2>)
+                        ? (<h2 className="text-xl">Что будем смотреть, <span className="underline">{user?.username}</span>?</h2>)
                         : (
                             <AppButton onClick={() => login()} className="text-xl flex gap-1.5 items-center" disabled={isPending}>
                                 Войти через
