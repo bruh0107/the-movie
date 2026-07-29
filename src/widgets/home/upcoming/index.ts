@@ -1,0 +1,1 @@
+export { default as UpcomingMovies } from './ui/UpcomingMovies.tsx'

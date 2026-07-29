@@ -1,0 +1,1 @@
+export { default as NowPlayingMovies } from './ui/NowPlayingMovies.tsx'

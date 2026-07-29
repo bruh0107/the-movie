@@ -1,0 +1,1 @@
+export { default as TrendMovies} from './ui/TrendMovies.tsx'

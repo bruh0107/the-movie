@@ -1,0 +1,1 @@
+export { default as MovieCarousel } from './ui/MovieCarousel.tsx'
