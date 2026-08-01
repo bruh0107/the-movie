@@ -1,0 +1,1 @@
+export { default as ProfileFavoriteMovie } from './ui/ProfileFavoriteMovie.tsx'

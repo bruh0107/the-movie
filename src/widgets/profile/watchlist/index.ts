@@ -1,0 +1,1 @@
+export { default as ProfileWatchlist } from './ui/ProfileWatchlist.tsx'

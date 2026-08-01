@@ -1,5 +1,5 @@
 import { api } from "@/shared/api";
-import type { DetailMovie, ExtendedMoviesResponse, MoviesResponse } from "@/entities/movie";
+import type { BasicBody, DetailMovie, ExtendedMoviesResponse, FavoriteBody, MoviesResponse } from "@/entities/movie";
 
 export const movieService = {
     getTrendingMovies: (time_window: string) =>
@@ -26,5 +26,19 @@ export const movieService = {
             params: {
                 session_id: id,
             }
-        }).then((res) => res.data.results)
+        }).then((res) => res.data.results),
+
+    addToFavorite: (id: string, payload: BasicBody) =>
+        api.post<{ status_code: number, status_message: string }>(`account/${id}/favorite`, payload, {
+            params: {
+                session_id: id
+            }
+        }).then(res => res.data),
+
+    addToWatchlist: (id: string, payload: BasicBody) =>
+        api.post<{ status_code: number, status_message: string }>(`account/${id}/watchlist`, payload, {
+            params: {
+                session_id: id
+            }
+        }).then(res => res.data)
 }

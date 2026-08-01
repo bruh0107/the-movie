@@ -67,7 +67,7 @@ export interface Movie extends BaseMovie {
 
 export interface DetailMovie extends BaseMovie {
     belongs_to_collection: BelongsToCollection | null
-    budget: number
+    budget: number | null
     genres: Genre[]
     homepage: string
     imdb_id: string | null
@@ -79,4 +79,10 @@ export interface DetailMovie extends BaseMovie {
     spoken_languages: SpokenLanguage[]
     status: string
     tagline: string | null
+}
+
+export interface BasicBody {
+    media_type: 'movie' | 'tv'
+    media_id: number
+    value: boolean
 }

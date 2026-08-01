@@ -1,5 +1,4 @@
-import { ListsItem } from "@/widgets/movie";
-import type { Movie } from "@/entities/movie";
+import { type Movie, MovieItem } from "@/entities/movie";
 import type { FC } from "react";
 
 interface Props {
@@ -12,10 +11,10 @@ const ListsList: FC<Props> = (props) => {
     } = props
 
     return (
-        <div>
+        <div className="grid grid-cols-4 gap-10">
             {
                 movies?.map((movie) => (
-                    <ListsItem
+                    <MovieItem
                         key={movie.id}
                         movie={movie}
                     />
