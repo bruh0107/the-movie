@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { authService } from "@/entities/auth";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { authService, useAuth } from "@/entities/account";
 
 export const useRequestToken = () => {
     return useMutation({
@@ -15,5 +15,15 @@ export const useRequestToken = () => {
         onError: (error) => {
             console.error('Ошибка при запросе request_token:', error);
         }
+    })
+}
+
+export const useAccountDetail = () => {
+    const session_id = useAuth(state => state.session_id)
+
+    return useQuery({
+        queryKey: ['user'],
+        queryFn: () => authService.getAccountDetails(session_id),
+        enabled: !!session_id
     })
 }

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
-import { ApprovedPage, HomePage } from "@/pages";
+import { ApprovedPage, HomePage, MoviePage, ProfilePage } from "@/pages";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +14,14 @@ export const router = createBrowserRouter([
             {
                 path: '/approved',
                 element: <ApprovedPage />
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />
+            },
+            {
+                path: '/movie/:id',
+                element: <MoviePage />,
             }
         ]
     }

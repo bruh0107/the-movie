@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { authService, useAuth } from "@/entities/auth";
+import { authService, useAuth } from "@/entities/account";
 
 const ApprovedPage = () => {
     const [searchParams] = useSearchParams()

@@ -1,5 +1,5 @@
 import { api } from "@/shared/api";
-import type { RequestTokenResponse, User } from "@/entities/auth";
+import type { RequestTokenResponse, User } from "@/entities/account";
 
 export const authService = {
     getRequestToken: async () => {

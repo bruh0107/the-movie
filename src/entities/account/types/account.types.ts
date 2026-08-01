@@ -27,8 +27,8 @@ export interface RequestTokenResponse {
     request_token: string
 }
 
-export interface AuthTypes {
-    session_id: string | null
+export interface AccountTypes {
+    session_id: string
     user: User | null
     setAuth: (session_id: string, user: any) => void
     logout: () => void

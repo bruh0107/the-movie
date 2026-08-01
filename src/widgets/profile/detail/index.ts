@@ -1,0 +1,1 @@
+export { default as ProfileDetail } from './ui/ProfileDetail.tsx'

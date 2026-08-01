@@ -1,14 +1,14 @@
 import { create } from "zustand/react";
-import type { AuthTypes } from "@/entities/auth";
+import type { AccountTypes } from "@/entities/account";
 import { persist } from "zustand/middleware";
 
-export const useAuth = create<AuthTypes>()(
+export const useAuth = create<AccountTypes>()(
     persist(
         (set) => ({
-            session_id: null,
+            session_id: '',
             user: null,
             setAuth: (session_id, user) => set({session_id, user}),
-            logout: () => set({ session_id: null, user: null }),
+            logout: () => set({ session_id: '', user: null }),
         }),
         {
             name: 'the-movie-auth'

@@ -1,2 +1,4 @@
 export { default as HomePage } from './home/HomePage.tsx'
 export { default as ApprovedPage } from './approved/ApprovedPage.tsx'
+export { default as ProfilePage } from './profile/ProfilePage.tsx'
+export { default as MoviePage } from './movie/MoviePage.tsx'
