@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { type BasicBody, type FavoriteBody, movieService } from "@/entities/movie";
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { type FavoriteBody, movieService, type WatchlistBody } from "@/entities/movie";
 import { useAuth } from "@/entities/account";
 
 export const useTrendingMovies = (time_window: string) => {
@@ -31,12 +31,13 @@ export const useMovie = (movie_id: number) => {
     })
 }
 
-export const useFavoriteMovies = () => {
+export const useFavoriteMovies = (page?: number) => {
     const session_id = useAuth(state => state.session_id)
 
     return useQuery({
-        queryKey: ['favorite-movie'],
-        queryFn: () => movieService.getFavoriteMovies(session_id),
+        queryKey: ['favorite-movie', page],
+        queryFn: () => movieService.getFavoriteMovies(session_id, page),
+        placeholderData: keepPreviousData,
         enabled: !!session_id
     })
 }
@@ -51,18 +52,21 @@ export const useWatchlistMovies = () => {
     })
 }
 
-export const useAddToFavorite = () => {
+export const useAddToFavorite = (movie_id?: number) => {
     const session_id = useAuth(state => state.session_id)
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (payload: BasicBody) => {
+        mutationFn: (payload: FavoriteBody) => {
             if (!session_id) throw new Error('Пользователь не авторизован')
             return movieService.addToFavorite(session_id, payload)
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['favorite-movie'] })
-        }
+            queryClient.invalidateQueries({ queryKey: ['favorite-movie'] });
+            if (movie_id) {
+                queryClient.invalidateQueries({ queryKey: ['movie-account-states', movie_id] });
+            }
+        },
     })
 }
 
@@ -71,7 +75,7 @@ export const useAddToWatchlist = () => {
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: (payload: BasicBody) => {
+        mutationFn: (payload: WatchlistBody) => {
             if (!session_id) throw new Error('Пользователь не авторизован')
             return movieService.addToWatchlist(session_id, payload)
         },
@@ -81,3 +85,13 @@ export const useAddToWatchlist = () => {
         }
     })
 }
+
+export const useMovieAccountStates = (movieId: number) => {
+    const session_id = useAuth((state) => state.session_id);
+
+    return useQuery({
+        queryKey: ['movie-account-states', movieId],
+        queryFn: () => movieService.getAccountStates(movieId, session_id),
+        enabled: !!session_id && !!movieId,
+    });
+};

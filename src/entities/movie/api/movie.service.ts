@@ -1,5 +1,12 @@
 import { api } from "@/shared/api";
-import type { BasicBody, DetailMovie, ExtendedMoviesResponse, FavoriteBody, MoviesResponse } from "@/entities/movie";
+import type {
+    AccountStatesResponse,
+    DetailMovie,
+    ExtendedMoviesResponse,
+    FavoriteBody,
+    MoviesResponse,
+    WatchlistBody
+} from "@/entities/movie";
 
 export const movieService = {
     getTrendingMovies: (time_window: string) =>
@@ -14,10 +21,11 @@ export const movieService = {
     getMovie: (movie_id: number) =>
         api.get<DetailMovie>(`movie/${movie_id}`).then((res) => res.data),
 
-    getFavoriteMovies: (id: string) =>
+    getFavoriteMovies: (id: string, page: number = 1) =>
         api.get<MoviesResponse>(`account/${id}/favorite/movies`, {
             params: {
                 session_id: id,
+                page: page
             }
         }).then((res) => res.data.results),
 
@@ -28,17 +36,24 @@ export const movieService = {
             }
         }).then((res) => res.data.results),
 
-    addToFavorite: (id: string, payload: BasicBody) =>
+    addToFavorite: (id: string, payload: FavoriteBody) =>
         api.post<{ status_code: number, status_message: string }>(`account/${id}/favorite`, payload, {
             params: {
                 session_id: id
             }
         }).then(res => res.data),
 
-    addToWatchlist: (id: string, payload: BasicBody) =>
+    addToWatchlist: (id: string, payload: WatchlistBody) =>
         api.post<{ status_code: number, status_message: string }>(`account/${id}/watchlist`, payload, {
             params: {
                 session_id: id
             }
-        }).then(res => res.data)
+        }).then(res => res.data),
+
+    getAccountStates: (movie_id: number, session_id: string) =>
+        api.get<AccountStatesResponse>(`movie/${movie_id}/account_states`, {
+            params: {
+                session_id: session_id
+            }
+        }).then((res) => res.data)
 }

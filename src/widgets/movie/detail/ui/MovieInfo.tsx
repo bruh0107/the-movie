@@ -34,7 +34,7 @@ const MovieInfo: FC<Props> = ({movie}) => {
                     <p>{movie?.release_date.slice(0, 4)}</p>
                     <div className="flex gap-2">
                         {movie?.genres.map((genre) => (
-                            <p>{ genre.name }</p>
+                            <p key={genre.id}>{ genre.name }</p>
                         ))}
                     </div>
                     <p>{movie?.tagline ? movie?.tagline : '-'}</p>

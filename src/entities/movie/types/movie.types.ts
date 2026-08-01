@@ -81,8 +81,22 @@ export interface DetailMovie extends BaseMovie {
     tagline: string | null
 }
 
-export interface BasicBody {
-    media_type: 'movie' | 'tv'
-    media_id: number
-    value: boolean
+export interface BaseMediaPayload {
+    media_type: 'movie' | 'tv';
+    media_id: number;
+}
+
+export interface FavoriteBody extends BaseMediaPayload {
+    favorite: boolean;
+}
+
+export interface WatchlistBody extends BaseMediaPayload {
+    watchlist: boolean;
+}
+
+export interface AccountStatesResponse {
+    id: number
+    rated: boolean | object
+    favorite: boolean
+    watchlist: boolean
 }
