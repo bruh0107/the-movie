@@ -35,7 +35,7 @@ const MovieInfo: FC<Props> = ({movie}) => {
                     <div className="flex gap-2">
                         {movie?.genres.map((genre) => (
                             <p key={genre.id}>{ genre.name }</p>
-                        ))}
+                        )) && '-'}
                     </div>
                     <p>{movie?.tagline ? movie?.tagline : '-'}</p>
                     <p>${ formatNum(movie?.budget) }</p>

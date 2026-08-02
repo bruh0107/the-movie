@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
 import { ApprovedPage, HomePage, MoviePage, ProfilePage } from "@/pages";
 import { ProfileFavoriteMovie, ProfileWatchlist } from "@/widgets/profile";
+import CatalogPage from "@/pages/catalog/CatalogPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: '/movie/:id',
                 element: <MoviePage />,
+            },
+            {
+                path: '/movies',
+                element: <CatalogPage />
             }
         ]
     }

@@ -13,8 +13,8 @@ const MovieDetailButtons = () => {
 
     const { data: accountStates } = useMovieAccountStates(movieId);
 
-    const { mutate: toggleFavorite, isPending: pendingFavorite } = useAddToFavorite()
-    const { mutate: toggleWatchlist, isPending: pendingWatchlist } = useAddToWatchlist()
+    const { mutate: toggleFavorite, isPending: pendingFavorite } = useAddToFavorite(movieId)
+    const { mutate: toggleWatchlist, isPending: pendingWatchlist } = useAddToWatchlist(movieId)
 
     const isAuth = useIsAuth()
 
@@ -49,16 +49,11 @@ const MovieDetailButtons = () => {
                     disabled={pendingWatchlist}
                     className="flex items-center gap-2"
                 >
-                    {
-                        isWatchlist
-                            ? <AppIcon name="check" className="w-8 text-[#54a15e]" />
-                            : <AppIcon name="watchlist-eye" className="w-8" />
-                    }
-                    {
-                        isFavorite
-                            ? 'В очереди на просмотр'
-                            : 'Буду смотреть'
-                    }
+                    <AppIcon
+                        name={isWatchlist ? 'check' : 'watchlist-eye'}
+                        className={`w-8 ${isWatchlist ? 'text-[#54a15e]' : ''}`}
+                    />
+                    {isWatchlist ? 'В очереди на просмотр' : 'Буду смотреть'}
                 </AppButton>
 
                 <AppButton

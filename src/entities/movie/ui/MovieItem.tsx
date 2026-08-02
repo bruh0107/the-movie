@@ -1,8 +1,8 @@
-import { getStorageUrl } from "@/shared/utils";
-import { Link } from "react-router-dom";
-import { AppButton } from "@/shared/ui";
-import type { Movie } from "@/entities/movie";
-import { type FC, useState } from "react";
+import { getStorageUrl } from "@/shared/utils"
+import { Link } from "react-router-dom"
+import { AppButton } from "@/shared/ui"
+import type { Movie } from "@/entities/movie"
+import { type FC, useState } from "react"
 
 interface Props {
     movie: Movie

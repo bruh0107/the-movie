@@ -4,7 +4,7 @@ const HeaderNavigation = () => {
     return (
         <nav className="flex justify-between text-xl w-2/5">
             <Link to="/">Главная</Link>
-            <a href="">Фильмы</a>
+            <Link to="/movies">Фильмы</Link>
             <a href="">Сериалы</a>
             <a href="">Актеры</a>
             <a href="">Случайный фильм</a>

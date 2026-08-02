@@ -4,6 +4,7 @@ import type {
     DetailMovie,
     ExtendedMoviesResponse,
     FavoriteBody,
+    FilterParams,
     MoviesResponse,
     WatchlistBody
 } from "@/entities/movie";
@@ -29,10 +30,11 @@ export const movieService = {
             }
         }).then((res) => res.data.results),
 
-    getWatchlistMovies: (id: string) =>
+    getWatchlistMovies: (id: string, page: number = 1) =>
         api.get<MoviesResponse>(`account/${id}/watchlist/movies`, {
             params: {
                 session_id: id,
+                page: page
             }
         }).then((res) => res.data.results),
 
@@ -55,5 +57,14 @@ export const movieService = {
             params: {
                 session_id: session_id
             }
-        }).then((res) => res.data)
+        }).then((res) => res.data),
+
+    getDiscoverMovie: (params?: FilterParams) =>
+        api.get<MoviesResponse>('discover/movie', {
+            params: {
+                include_adult: params?.include_adult ?? false,
+                sort_by: params?.sort_by ?? 'popularity.desc',
+                page: params?.page ?? 1,
+            }
+        }).then((res) => res.data.results),
 }

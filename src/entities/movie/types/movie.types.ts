@@ -100,3 +100,15 @@ export interface AccountStatesResponse {
     favorite: boolean
     watchlist: boolean
 }
+
+export type MovieSortBy =
+    | 'vote_average.desc'
+    | 'vote_average.asc'
+    | 'popularity.desc'
+    | 'popularity.asc'
+
+export interface FilterParams {
+    include_adult?: boolean
+    sort_by?: MovieSortBy
+    page: number
+}

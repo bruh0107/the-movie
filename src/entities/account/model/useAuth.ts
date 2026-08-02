@@ -19,3 +19,5 @@ export const useAuth = create<AccountTypes>()(
 export const useIsAuth = () => useAuth((state) => !!state.session_id)
 
 export const useCurrentUser = () => useAuth((state) => state.user)
+
+export const useLogout = () => useAuth((state) => state.logout)

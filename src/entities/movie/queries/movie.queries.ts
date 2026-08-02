@@ -1,5 +1,5 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { type FavoriteBody, movieService, type WatchlistBody } from "@/entities/movie";
+import { type FavoriteBody, type FilterParams, movieService, type WatchlistBody } from "@/entities/movie";
 import { useAuth } from "@/entities/account";
 
 export const useTrendingMovies = (time_window: string) => {
@@ -42,15 +42,26 @@ export const useFavoriteMovies = (page?: number) => {
     })
 }
 
-export const useWatchlistMovies = () => {
+export const useWatchlistMovies = (page?: number) => {
     const session_id = useAuth(state => state.session_id)
 
     return useQuery({
-        queryKey: ['watchlist'],
-        queryFn: () => movieService.getWatchlistMovies(session_id),
+        queryKey: ['watchlist', page],
+        queryFn: () => movieService.getWatchlistMovies(session_id, page),
+        placeholderData: keepPreviousData,
         enabled: !!session_id
     })
 }
+
+export const useMovieAccountStates = (movieId: number) => {
+    const session_id = useAuth((state) => state.session_id);
+
+    return useQuery({
+        queryKey: ['movie-account-states', movieId],
+        queryFn: () => movieService.getAccountStates(movieId, session_id),
+        enabled: !!session_id && !!movieId,
+    });
+};
 
 export const useAddToFavorite = (movie_id?: number) => {
     const session_id = useAuth(state => state.session_id)
@@ -70,7 +81,7 @@ export const useAddToFavorite = (movie_id?: number) => {
     })
 }
 
-export const useAddToWatchlist = () => {
+export const useAddToWatchlist = (movie_id?: number) => {
     const session_id = useAuth(state => state.session_id)
     const queryClient = useQueryClient()
 
@@ -82,16 +93,17 @@ export const useAddToWatchlist = () => {
 
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['watchlist'] })
+            if (movie_id) {
+                queryClient.invalidateQueries({ queryKey: ['movie-account-states', movie_id] })
+            }
         }
     })
 }
 
-export const useMovieAccountStates = (movieId: number) => {
-    const session_id = useAuth((state) => state.session_id);
-
+export const useDiscoverMovie = (params?: FilterParams) => {
     return useQuery({
-        queryKey: ['movie-account-states', movieId],
-        queryFn: () => movieService.getAccountStates(movieId, session_id),
-        enabled: !!session_id && !!movieId,
-    });
-};
+        queryKey: ['discover', params],
+        queryFn: () => movieService.getDiscoverMovie(params),
+        placeholderData: keepPreviousData
+    })
+}
