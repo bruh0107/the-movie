@@ -1,0 +1,1 @@
+export { default as MovieFilter } from './ui/MovieFilter.tsx'

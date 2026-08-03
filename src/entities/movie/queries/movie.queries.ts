@@ -107,3 +107,28 @@ export const useDiscoverMovie = (params?: FilterParams) => {
         placeholderData: keepPreviousData
     })
 }
+
+export const useGenres = () => {
+    return useQuery({
+        queryKey: ['genres'],
+        queryFn: () => movieService.getGenres(),
+        staleTime: Infinity,
+    })
+}
+
+export const useLanguage = () => {
+    return useQuery ({
+        queryKey: ['languages'],
+        queryFn: () => movieService.getLanguages(),
+        staleTime: Infinity
+    })
+}
+
+export const useSearchMovie = (query: string, page: number = 1) => {
+    return useQuery({
+        queryKey: ['search-movie', query, page],
+        queryFn: () => movieService.searchMovie(query, page),
+        enabled: query.trim().length > 1,
+        placeholderData: keepPreviousData
+    })
+}

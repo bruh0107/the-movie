@@ -1,7 +1,8 @@
 import { type Dispatch, type SetStateAction, useState } from "react"
-import { type FilterParams, MovieItem, useDiscoverMovie } from "@/entities/movie"
+import { type FilterParams, MovieItem, useDiscoverMovie, useSearchMovie } from "@/entities/movie"
 import { ListsPagination } from "@/shared/ui"
-import { MovieSort } from "@/features/movie";
+import { MovieFilter } from "@/features/movie";
+import { useDebounce } from "@/shared/lib";
 
 const MovieCatalog = () => {
     const [filters, setFilters] = useState<FilterParams>({
@@ -9,9 +10,26 @@ const MovieCatalog = () => {
         include_adult: false,
         page: 1
     })
+    const [search, setSearch] = useState("")
+    const searchDebounce = useDebounce(search, 500)
 
-    const { data: movies, isLoading, isPlaceholderData } = useDiscoverMovie(filters)
+    const isSearchMode = searchDebounce.trim().length > 1
 
+    const {
+        data: discoverMovies,
+        isLoading: isDiscoverLoading,
+        isPlaceholderData: isDiscoverPlaceholder
+    } = useDiscoverMovie(filters)
+
+    const {
+        data: searchMovies,
+        isLoading: isSearchLoading,
+        isPlaceholderData: isSearchPlaceholder
+    } = useSearchMovie(searchDebounce, filters.page)
+
+    const movies = isSearchMode ? searchMovies : discoverMovies
+    const isLoading = isSearchMode ? isSearchLoading : isDiscoverLoading
+    const isPlaceholderData = isSearchMode ? isSearchPlaceholder : isDiscoverPlaceholder
 
     const handlePageChange: Dispatch<SetStateAction<number>> = (action) => {
         setFilters((prev) => {
@@ -20,34 +38,41 @@ const MovieCatalog = () => {
         })
     }
 
+    const hasMovies = movies && movies.length > 0
+
     return (
         <>
-            <MovieSort
+            <MovieFilter
                 filters={filters}
                 setFilters={setFilters}
+                search={search}
+                setSearch={setSearch}
             />
             <div>
-                {
-                    isLoading ? (
-                        <div className="loader" />
-                    ) : (
-                        <div className="grid grid-cols-4 gap-4">
-                            {
-                                movies?.map((movie) => (
-                                    <MovieItem key={movie.id} movie={movie} />
-                                ))
-                            }
-                        </div>
-                    )
-                }
+                {isLoading ? (
+                    <div className="loader" />
+                ) : hasMovies ? (
+                    <div className="grid grid-cols-4 gap-4">
+                        {movies.map((movie) => (
+                            <MovieItem key={movie.id} movie={movie} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="py-12 text-center text-basic">
+                        <h1 className="text-2xl font-semibold">Ничего не найдено</h1>
+                        <p className="text-sm mt-1">Попробуйте изменить параметры поиска или фильтрации</p>
+                    </div>
+                )}
             </div>
 
-            <ListsPagination
-                placeholderData={isPlaceholderData}
-                page={filters.page ?? 1}
-                setPage={handlePageChange}
-                movies={movies}
-            />
+            {hasMovies && (
+                <ListsPagination
+                    placeholderData={isPlaceholderData}
+                    page={filters.page ?? 1}
+                    setPage={handlePageChange}
+                    movies={movies}
+                />
+            )}
         </>
     );
 };

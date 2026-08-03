@@ -48,6 +48,15 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.custom-select {
+    background: var(--color-basic);
+    color: var(--color-white);
+    padding-inline: 16px;
+    padding-block: 8px;
+    border-radius: 12px;
+    border: none
+}
+
 .loader {
     font-weight: bold;
     font-family: monospace;

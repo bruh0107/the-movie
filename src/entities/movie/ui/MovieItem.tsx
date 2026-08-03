@@ -33,7 +33,7 @@ const MovieItem: FC<Props> = (props) => {
                             transition-opacity duration-300 text-white p-4
                             ${hoveredMovieId === movie.id ? 'opacity-100' : 'opacity-0'}`}>
                 <h1 className="text-xl font-second font-bold text-center px-4 drop-shadow-lg">
-                    { movie.title } ({movie.release_date.slice(0, 4)})
+                    { movie.title } ({movie.release_date?.slice(0, 4)})
                 </h1>
                 <p className='text-xl line-clamp-8'>
                     {movie.overview ? movie.overview : 'Описания у фильма нет. Посмотрите и узнайте о чем он!'}

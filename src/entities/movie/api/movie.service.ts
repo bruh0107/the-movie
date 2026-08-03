@@ -4,7 +4,7 @@ import type {
     DetailMovie,
     ExtendedMoviesResponse,
     FavoriteBody,
-    FilterParams,
+    FilterParams, Genre, Language,
     MoviesResponse,
     WatchlistBody
 } from "@/entities/movie";
@@ -59,12 +59,37 @@ export const movieService = {
             }
         }).then((res) => res.data),
 
+    getGenres: () =>
+        api.get<{ genres: Genre[] }>('genre/movie/list', {
+            params: { language: 'ru-RU'}
+        }).then(res => res.data.genres),
+
     getDiscoverMovie: (params?: FilterParams) =>
         api.get<MoviesResponse>('discover/movie', {
             params: {
-                include_adult: params?.include_adult ?? false,
-                sort_by: params?.sort_by ?? 'popularity.desc',
                 page: params?.page ?? 1,
+                sort_by: params?.sort_by ?? 'popularity.desc',
+                include_adult: false,
+                with_genres: params?.with_genres,
+                primary_release_year: params?.primary_release_year,
+                "primary_release_date.gte": params?.["primary_release_date.gte"],
+                "primary_release_date.lte": params?.["primary_release_date.lte"],
+                "with_runtime.gte": params?.["with_runtime.gte"],
+                "with_runtime.lte": params?.["with_runtime.lte"],
+                with_original_language: params?.with_original_language,
+                'vote_average.gte': params?.['vote_average.gte'],
+                'vote_average.lte': params?.['vote_average.lte']
             }
         }).then((res) => res.data.results),
+
+    getLanguages: () =>
+        api.get<Language[]>('configuration/languages').then(res => res.data),
+
+    searchMovie: (query: string, page: number = 1) =>
+        api.get<MoviesResponse>('search/movie', {
+            params: { query, page }
+        }).then(res => res.data.results)
+
+    // getDiscoverTV: () =>
+    //     api.get<TVShowResponse>('discover/tv')
 }

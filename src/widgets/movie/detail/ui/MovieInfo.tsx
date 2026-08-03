@@ -31,18 +31,22 @@ const MovieInfo: FC<Props> = ({movie}) => {
                     <p>Страна</p>
                 </div>
                 <div className="text-xl flex flex-col gap-3">
-                    <p>{movie?.release_date.slice(0, 4)}</p>
+                    <p>{movie?.release_date ? movie?.release_date.slice(0, 4) : '-'}</p>
                     <div className="flex gap-2">
-                        {movie?.genres.map((genre) => (
-                            <p key={genre.id}>{ genre.name }</p>
-                        )) && '-'}
+                        {movie?.genres && movie.genres.length > 0
+                            ? movie.genres.map((genre) => genre.name).join(', ')
+                            : '-'
+                        }
                     </div>
                     <p>{movie?.tagline ? movie?.tagline : '-'}</p>
                     <p>${ formatNum(movie?.budget) }</p>
                     <p>${ formatNum(movie?.revenue) }</p>
                     <p>{ formatRuntime(movie?.runtime) }</p>
                     <p>
-                        {movie?.production_countries.map((country) => country.name).join(', ')}
+                        {movie?.production_countries
+                            ? movie?.production_countries.map((country) => country.name).join(', ')
+                            : '-'
+                        }
                     </p>
                 </div>
             </div>

@@ -1,10 +1,10 @@
-import { MovieCatalog } from "@/widgets/movie";
+import { Outlet } from "react-router-dom";
 
 const CatalogPage = () => {
 
     return (
         <div className="main-container">
-            <MovieCatalog />
+            <Outlet />
         </div>
     );
 };

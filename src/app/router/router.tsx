@@ -3,6 +3,8 @@ import { DefaultLayout } from "@/app/layouts";
 import { ApprovedPage, HomePage, MoviePage, ProfilePage } from "@/pages";
 import { ProfileFavoriteMovie, ProfileWatchlist } from "@/widgets/profile";
 import CatalogPage from "@/pages/catalog/CatalogPage.tsx";
+import { MovieCatalog } from "@/widgets/movie";
+import { TVCatalog } from "@/widgets/tv";
 
 export const router = createBrowserRouter([
     {
@@ -40,8 +42,18 @@ export const router = createBrowserRouter([
                 element: <MoviePage />,
             },
             {
-                path: '/movies',
-                element: <CatalogPage />
+                path: '/catalog',
+                element: <CatalogPage />,
+                children: [
+                    {
+                        path: 'movies',
+                        element: <MovieCatalog />
+                    },
+                    {
+                        path: 'tv',
+                        element: <TVCatalog />
+                    }
+                ]
             }
         ]
     }

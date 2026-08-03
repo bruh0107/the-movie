@@ -1,14 +1,16 @@
+export interface PaginatedResponse<T> {
+    page: number;
+    results: T[];
+    total_pages: number;
+    total_results: number;
+}
+
 export interface Genre {
     id: number
     name: string
 }
 
-export interface MoviesResponse {
-    page: number
-    results: Movie[]
-    total_pages: number
-    total_results: number
-}
+export type MoviesResponse = PaginatedResponse<Movie>
 
 export interface Date {
     maximum: string
@@ -106,9 +108,44 @@ export type MovieSortBy =
     | 'vote_average.asc'
     | 'popularity.desc'
     | 'popularity.asc'
+    | 'primary_release_date.desc'
+    | 'primary_release_date.asc'
 
 export interface FilterParams {
-    include_adult?: boolean
-    sort_by?: MovieSortBy
     page: number
+    sort_by?: MovieSortBy
+    include_adult?: boolean
+    with_genres?: string
+    primary_release_year?: number
+    'primary_release_date.gte'?: string
+    'primary_release_date.lte'?: string
+    'with_runtime.gte'?: number
+    'with_runtime.lte'?: number
+    with_original_language?: string
+    'vote_average.gte'?: string
+    'vote_average.lte'?: string
+}
+
+export interface TVShow {
+    backdrop_path: string
+    first_air_date: string
+    genre_ids: number[]
+    id: number
+    name: string
+    origin_country: string[]
+    original_language: string
+    original_name: string
+    overview: string
+    popularity: number
+    poster_path: string
+    vote_average: number
+    vote_count: number
+}
+
+export type TVShowResponse = PaginatedResponse<TVShow>
+
+export interface Language {
+    iso_639_1: string
+    english_name: string
+    name: string
 }
