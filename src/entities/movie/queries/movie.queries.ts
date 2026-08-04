@@ -1,5 +1,10 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { type FavoriteBody, type FilterParams, movieService, type WatchlistBody } from "@/entities/movie";
+import {
+    movieService,
+    type FavoriteBody,
+    type FilterParams,
+    type WatchlistBody
+} from "@/entities/movie";
 import { useAuth } from "@/entities/account";
 
 export const useTrendingMovies = (time_window: string) => {
@@ -130,5 +135,13 @@ export const useSearchMovie = (query: string, page: number = 1) => {
         queryFn: () => movieService.searchMovie(query, page),
         enabled: query.trim().length > 1,
         placeholderData: keepPreviousData
+    })
+}
+
+export const useMovieVideos = (movie_id: number) => {
+    return useQuery({
+        queryKey: ['movie-videos', movie_id],
+        queryFn: () => movieService.getMovieVideos(movie_id),
+        enabled: !!movie_id
     })
 }

@@ -5,7 +5,7 @@ import type {
     ExtendedMoviesResponse,
     FavoriteBody,
     FilterParams, Genre, Language,
-    MoviesResponse,
+    MoviesResponse, VideosResponse,
     WatchlistBody
 } from "@/entities/movie";
 
@@ -88,8 +88,8 @@ export const movieService = {
     searchMovie: (query: string, page: number = 1) =>
         api.get<MoviesResponse>('search/movie', {
             params: { query, page }
-        }).then(res => res.data.results)
+        }).then(res => res.data.results),
 
-    // getDiscoverTV: () =>
-    //     api.get<TVShowResponse>('discover/tv')
+    getMovieVideos: (movie_id: number) =>
+        api.get<VideosResponse>(`movie/${movie_id}/videos`).then(res => res.data.results),
 }

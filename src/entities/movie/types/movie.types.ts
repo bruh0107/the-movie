@@ -1,9 +1,4 @@
-export interface PaginatedResponse<T> {
-    page: number;
-    results: T[];
-    total_pages: number;
-    total_results: number;
-}
+import type { PaginatedResponse } from "@/shared/api";
 
 export interface Genre {
     id: number
@@ -126,26 +121,26 @@ export interface FilterParams {
     'vote_average.lte'?: string
 }
 
-export interface TVShow {
-    backdrop_path: string
-    first_air_date: string
-    genre_ids: number[]
-    id: number
-    name: string
-    origin_country: string[]
-    original_language: string
-    original_name: string
-    overview: string
-    popularity: number
-    poster_path: string
-    vote_average: number
-    vote_count: number
-}
-
-export type TVShowResponse = PaginatedResponse<TVShow>
-
 export interface Language {
     iso_639_1: string
     english_name: string
     name: string
+}
+
+export interface Video {
+    iso_639_1: string
+    iso_3166_1: string
+    name: string
+    key: string
+    site: string
+    size: number
+    type: string
+    official: boolean
+    published_at: string
+    id: string
+}
+
+export interface VideosResponse {
+    id: number
+    results: Video[]
 }

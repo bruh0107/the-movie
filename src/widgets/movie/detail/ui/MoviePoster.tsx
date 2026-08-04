@@ -2,12 +2,17 @@ import { getStorageUrl } from "@/shared/utils";
 import { AppIcon } from "@/shared/ui";
 import type { FC } from "react";
 import type { DetailMovie } from "@/entities/movie";
+import { MovieTrailer } from "@/widgets/movie";
+import { useParams } from "react-router-dom";
 
 interface Props {
     movie: DetailMovie | undefined
 }
 
 const MoviePoster: FC<Props> = ({ movie }) => {
+    const { id } = useParams<{ id: string }>()
+    const movieId = id ? Number(id) : 0
+
     return (
         <div className="w-1/4 flex flex-col gap-2">
             <img
@@ -22,6 +27,7 @@ const MoviePoster: FC<Props> = ({ movie }) => {
                 </div>
                 <p>{ movie?.vote_count } голосов</p>
             </div>
+            <MovieTrailer movie_id={movieId} />
         </div>
     );
 };

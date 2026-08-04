@@ -1,6 +1,19 @@
+import { TVItem, useDiscoverTV } from "@/entities/tv";
+
 const TVCatalog = () => {
+    const { data: tvShows } = useDiscoverTV()
+
     return (
-        <h1></h1>
+        <div className="grid grid-cols-4 gap-4">
+            {
+                tvShows?.map(show => (
+                    <TVItem
+                        key={show.id}
+                        tv={show}
+                    />
+                ))
+            }
+        </div>
     )
 }
 

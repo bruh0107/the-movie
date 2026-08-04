@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
-import { ApprovedPage, HomePage, MoviePage, ProfilePage } from "@/pages";
+import { ApprovedPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
 import { ProfileFavoriteMovie, ProfileWatchlist } from "@/widgets/profile";
 import CatalogPage from "@/pages/catalog/CatalogPage.tsx";
 import { MovieCatalog } from "@/widgets/movie";
@@ -38,10 +38,6 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/movie/:id',
-                element: <MoviePage />,
-            },
-            {
                 path: '/catalog',
                 element: <CatalogPage />,
                 children: [
@@ -54,6 +50,14 @@ export const router = createBrowserRouter([
                         element: <TVCatalog />
                     }
                 ]
+            },
+            {
+                path: '/movie/:id',
+                element: <MoviePage />,
+            },
+            {
+                path: '/tv/:id',
+                element: <TVPage />
             }
         ]
     }
