@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction, useState } from "react"
-import { type FilterParams, MovieItem, useDiscoverMovie, useSearchMovie } from "@/entities/movie"
-import { ListsPagination } from "@/shared/ui"
+import { type FilterParams, useDiscoverMovie, useSearchMovie } from "@/entities/movie"
+import { ContentItem, ListsPagination } from "@/shared/ui"
 import { MovieFilter } from "@/features/movie";
 import { useDebounce } from "@/shared/lib";
 
@@ -54,7 +54,11 @@ const MovieCatalog = () => {
                 ) : hasMovies ? (
                     <div className="grid grid-cols-4 gap-4">
                         {movies.map((movie) => (
-                            <MovieItem key={movie.id} movie={movie} />
+                            <ContentItem
+                                key={movie.id}
+                                content={movie}
+                                path="movie"
+                            />
                         ))}
                     </div>
                 ) : (

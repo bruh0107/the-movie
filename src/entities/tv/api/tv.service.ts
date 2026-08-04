@@ -1,5 +1,5 @@
 import { api } from "@/shared/api";
-import type { TVFilterParams, TVShowResponse } from "@/entities/tv";
+import type { TVFilterParams, TVShowDetail, TVShowResponse } from "@/entities/tv";
 
 export const tvService = {
     getDiscoverTV: (params?: TVFilterParams) =>
@@ -15,5 +15,12 @@ export const tvService = {
                 with_status: params?.with_status,
                 with_type: params?.with_type
             }
-        }).then(res => res.data.results)
+        }).then(res => res.data.results),
+
+    getTVDetail: (id: number) =>
+        api.get<TVShowDetail>(`tv/${id}`, {
+            params: {
+                language: 'ru-RU'
+            }
+        }).then(res => res.data)
 }

@@ -1,4 +1,5 @@
-import { TVItem, useDiscoverTV } from "@/entities/tv";
+import { useDiscoverTV } from "@/entities/tv";
+import { ContentItem } from "@/shared/ui";
 
 const TVCatalog = () => {
     const { data: tvShows } = useDiscoverTV()
@@ -7,9 +8,10 @@ const TVCatalog = () => {
         <div className="grid grid-cols-4 gap-4">
             {
                 tvShows?.map(show => (
-                    <TVItem
+                    <ContentItem
                         key={show.id}
-                        tv={show}
+                        content={show}
+                        path="tv"
                     />
                 ))
             }
