@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
 import { ApprovedPage, CatalogPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
 import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
@@ -26,12 +26,16 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ProfileFavorite />
+                        element: <Navigate to="favorite/movies" replace />
                     },
                     {
                         path: 'favorite',
                         element: <ProfileFavorite />,
                         children: [
+                            {
+                                index: true,
+                                element: <Navigate to="movies" replace />
+                            },
                             {
                                 path: 'movies',
                                 element: <FavoriteMovies />
@@ -46,6 +50,10 @@ export const router = createBrowserRouter([
                         path: 'watchlist',
                         element: <ProfileWatchlist />,
                         children: [
+                            {
+                                index: true,
+                                element: <Navigate to="movies" replace />
+                            },
                             {
                                 path: 'movies',
                                 element: <WatchlistMovies />
@@ -82,4 +90,4 @@ export const router = createBrowserRouter([
             }
         ]
     }
-])
+]);
