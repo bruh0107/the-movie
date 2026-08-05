@@ -22,3 +22,10 @@ export interface SpokenLanguage {
     iso_639_1: string
     name: string
 }
+
+export interface AccountStatesResponse {
+    id: number
+    rated: boolean | object
+    favorite: boolean
+    watchlist: boolean
+}

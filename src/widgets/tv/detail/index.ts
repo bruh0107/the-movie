@@ -1,0 +1,1 @@
+export { default as TVDetail } from './ui/TVDetail.tsx'

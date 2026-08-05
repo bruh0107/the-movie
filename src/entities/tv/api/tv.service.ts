@@ -1,4 +1,4 @@
-import { api } from "@/shared/api";
+import { type AccountStatesResponse, api } from "@/shared/api";
 import type { TVFilterParams, TVShowDetail, TVShowResponse } from "@/entities/tv";
 
 export const tvService = {
@@ -22,5 +22,11 @@ export const tvService = {
             params: {
                 language: 'ru-RU'
             }
+        }).then(res => res.data),
+
+    getTVAccountStates: (id: number, session_id: string) =>
+        api.get<AccountStatesResponse>(`tv/${id}/account_states`, {
+            params: { session_id }
         }).then(res => res.data)
+
 }

@@ -73,13 +73,6 @@ export interface WatchlistBody extends BaseMediaPayload {
     watchlist: boolean;
 }
 
-export interface AccountStatesResponse {
-    id: number
-    rated: boolean | object
-    favorite: boolean
-    watchlist: boolean
-}
-
 export type MovieSortBy =
     | 'vote_average.desc'
     | 'vote_average.asc'

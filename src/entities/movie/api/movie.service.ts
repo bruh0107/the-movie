@@ -1,6 +1,5 @@
-import { api } from "@/shared/api";
+import { type AccountStatesResponse, api } from "@/shared/api";
 import type {
-    AccountStatesResponse,
     DetailMovie,
     ExtendedMoviesResponse,
     FavoriteBody,
@@ -52,7 +51,7 @@ export const movieService = {
             }
         }).then(res => res.data),
 
-    getAccountStates: (movie_id: number, session_id: string) =>
+    getMovieAccountStates: (movie_id: number, session_id: string) =>
         api.get<AccountStatesResponse>(`movie/${movie_id}/account_states`, {
             params: {
                 session_id: session_id

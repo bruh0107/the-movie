@@ -58,15 +58,15 @@ export const useWatchlistMovies = (page?: number) => {
     })
 }
 
-export const useMovieAccountStates = (movieId: number) => {
+export const useMovieAccountStates = (movie_id: number) => {
     const session_id = useAuth((state) => state.session_id);
 
     return useQuery({
-        queryKey: ['movie-account-states', movieId],
-        queryFn: () => movieService.getAccountStates(movieId, session_id),
-        enabled: !!session_id && !!movieId,
-    });
-};
+        queryKey: ['movie-account-states', movie_id],
+        queryFn: () => movieService.getMovieAccountStates(movie_id, session_id),
+        enabled: !!session_id && !!movie_id,
+    })
+}
 
 export const useAddToFavorite = (movie_id?: number) => {
     const session_id = useAuth(state => state.session_id)

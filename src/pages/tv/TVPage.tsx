@@ -1,6 +1,8 @@
+import { TVDetail } from "@/widgets/tv";
+
 const TVPage = () => {
     return (
-        <h1></h1>
+        <TVDetail />
     )
 }
 

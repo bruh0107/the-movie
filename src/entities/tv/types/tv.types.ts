@@ -76,7 +76,7 @@ export interface TVShowDetail extends BasicTVShow {
     last_air_date: string
     last_episode_to_air: LastEpisodeToAir
     next_episode_to_air: string
-    networks: Networks
+    networks: Networks[]
     number_of_episodes: number
     number_of_seasons: number
     production_companies: ProductionCompany[]

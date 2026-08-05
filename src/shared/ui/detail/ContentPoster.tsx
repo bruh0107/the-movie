@@ -1,14 +1,16 @@
+import type { DetailMovie } from "@/entities/movie";
+import type { TVShowDetail } from "@/entities/tv";
 import { getStorageUrl } from "@/shared/utils";
 import { AppIcon } from "@/shared/ui";
-import type { TVShowDetail } from "@/entities/tv";
-import type { DetailMovie } from "@/entities/movie";
 import type { FC } from "react";
+import { MovieTrailer } from "@/widgets/movie";
 
 interface Props {
     content: TVShowDetail | DetailMovie
+    isTV: boolean
 }
 
-const ContentPoster: FC<Props> = ({ content }) => {
+const ContentPoster: FC<Props> = ({ content, isTV }) => {
     return (
         <div className="w-1/4 flex flex-col gap-2">
             <img
@@ -23,7 +25,9 @@ const ContentPoster: FC<Props> = ({ content }) => {
                 </div>
                 <p>{ content?.vote_count } голосов</p>
             </div>
-            {/*<MovieTrailer movie_id={movieId} />*/}
+            {!isTV && content?.id && (
+                <MovieTrailer movie_id={content.id} />
+            )}
         </div>
     )
 }
