@@ -53,7 +53,7 @@ const DetailedContent: FC<Props> = ({ content, isTV }) => {
                         <ContentPoster content={content} isTV={false} />
                         <div className="flex flex-col gap-10">
                             <article className="flex flex-col gap-4 text-xl">
-                                <h2 className="text-4xl font-bold font-second">
+                                <h2 className="text-4xl font-bold font-second max-w-200">
                                     { contentTitle(content) } ({contentDateRelease(content)})
                                 </h2>
                                 <p>{contentOriginalTitle(content)} {content?.adult && '18+'}</p>

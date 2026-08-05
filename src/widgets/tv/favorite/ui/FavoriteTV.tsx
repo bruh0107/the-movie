@@ -17,7 +17,7 @@ const FavoriteTV = () => {
 
     return (
         <>
-            <ListsList contents={favoriteTV} path="/profile/favorite/tv" />
+            <ListsList contents={favoriteTV} path="tv" />
 
             <ListsPagination
                 page={page}

@@ -68,40 +68,53 @@ export const useMovieAccountStates = (movie_id: number) => {
     })
 }
 
-export const useAddToFavorite = (movie_id?: number) => {
-    const session_id = useAuth(state => state.session_id)
+export const useAddToFavorite = (contentId?: number) => {
+    const sessionId = useAuth((state) => state.session_id);
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (payload: FavoriteBody) => {
-            if (!session_id) throw new Error('Пользователь не авторизован')
-            return movieService.addToFavorite(session_id, payload)
+            if (!sessionId) throw new Error("Пользователь не авторизован");
+            return movieService.addToFavorite(sessionId, payload);
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['favorite-movie'] });
-            if (movie_id) {
-                queryClient.invalidateQueries({ queryKey: ['movie-account-states', movie_id] });
+        onSuccess: (_, payload) => {
+            queryClient.invalidateQueries({ queryKey: ["favorite-movies"] });
+            queryClient.invalidateQueries({ queryKey: ["favorite-tv"] });
+
+            const targetId = contentId ?? payload.media_id;
+            if (targetId) {
+                const stateQueryKey = payload.media_type === "tv"
+                    ? ["tv-account-states", targetId]
+                    : ["movie-account-states", targetId];
+
+                queryClient.invalidateQueries({ queryKey: stateQueryKey });
             }
         },
-    })
-}
+    });
+};
 
-export const useAddToWatchlist = (movie_id?: number) => {
-    const session_id = useAuth(state => state.session_id)
+export const useAddToWatchlist = (contentId?: number) => {
+    const sessionId = useAuth((state) => state.session_id)
     const queryClient = useQueryClient()
 
     return useMutation({
         mutationFn: (payload: WatchlistBody) => {
-            if (!session_id) throw new Error('Пользователь не авторизован')
-            return movieService.addToWatchlist(session_id, payload)
+            if (!sessionId) throw new Error("Пользователь не авторизован")
+            return movieService.addToWatchlist(sessionId, payload)
         },
+        onSuccess: (_, payload) => {
+            queryClient.invalidateQueries({ queryKey: ["watchlist-movies"] })
+            queryClient.invalidateQueries({ queryKey: ["watchlist-tv"] })
 
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['watchlist'] })
-            if (movie_id) {
-                queryClient.invalidateQueries({ queryKey: ['movie-account-states', movie_id] })
+            const targetId = contentId ?? payload.media_id
+            if (targetId) {
+                const stateQueryKey = payload.media_type === "tv"
+                    ? ["tv-account-states", targetId]
+                    : ["movie-account-states", targetId]
+
+                queryClient.invalidateQueries({ queryKey: stateQueryKey })
             }
-        }
+        },
     })
 }
 

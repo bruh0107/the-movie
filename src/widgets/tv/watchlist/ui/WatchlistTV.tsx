@@ -16,7 +16,7 @@ const WatchlistTV = () => {
 
     return (
         <>
-            <ListsList contents={watchlistMovies} path="/profile/watchlist/tv" />
+            <ListsList contents={watchlistMovies} path="tv" />
 
             <ListsPagination
                 page={page}
