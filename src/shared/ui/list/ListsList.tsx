@@ -1,24 +1,22 @@
 import { type Movie } from "@/entities/movie";
 import type { FC } from "react";
 import { ContentItem } from "@/shared/ui";
+import type { TVShow } from "@/entities/tv";
 
 interface Props {
-    movies: Movie[] | undefined
+    contents: Movie[] | TVShow[]
+    path: string
 }
 
-const ListsList: FC<Props> = (props) => {
-    const {
-        movies
-    } = props
-
+const ListsList: FC<Props> = ({ contents, path }) => {
     return (
         <div className="grid grid-cols-4 gap-10">
             {
-                movies?.map((movie) => (
+                contents?.map((content) => (
                     <ContentItem
-                        key={movie.id}
-                        content={movie}
-                        path='movie'
+                        key={content.id}
+                        content={content}
+                        path={path}
                     />
                 ))
             }

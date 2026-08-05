@@ -27,6 +27,21 @@ export const tvService = {
     getTVAccountStates: (id: number, session_id: string) =>
         api.get<AccountStatesResponse>(`tv/${id}/account_states`, {
             params: { session_id }
-        }).then(res => res.data)
+        }).then(res => res.data),
 
+    getFavoriteTV: (id: string, page: number = 1) =>
+        api.get<TVShowResponse>(`account/${id}/favorite/tv`, {
+            params: {
+                session_id: id,
+                page
+            }
+        }).then(res => res.data.results),
+
+    getWatchlistTV: (id: string, page: number = 1) =>
+        api.get<TVShowResponse>(`account/${id}/watchlist/tv`, {
+            params: {
+                session_id: id,
+                page
+            }
+        }).then(res => res.data.results)
 }

@@ -1,6 +1,6 @@
 import { ProfileDetail } from "@/widgets/profile";
 import { Outlet } from "react-router-dom";
-import { MovieTabs } from "@/features/movie";
+import { MovieTabs } from "@/features/tabs";
 
 const ProfilePage = () => {
     return (

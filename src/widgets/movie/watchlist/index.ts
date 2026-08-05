@@ -1,0 +1,1 @@
+export { default as WatchlistMovies } from './ui/WatchlistMovies.tsx'

@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-const ProfileWatchlist = () => {
+const ProfileFavorites = () => {
     return (
         <Outlet />
     )
 }
 
-export default ProfileWatchlist
+export default ProfileFavorites

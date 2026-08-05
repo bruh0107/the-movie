@@ -1,10 +1,11 @@
 import { AppButton, AppIcon } from "@/shared/ui";
 import { type Dispatch, type FC, type SetStateAction } from "react";
 import type { Movie } from "@/entities/movie";
+import type { TVShow } from "@/entities/tv";
 
 interface Props {
     placeholderData: boolean
-    movies: Movie[] | undefined
+    contents: Movie[] | TVShow[]
     page: number;
     setPage: Dispatch<SetStateAction<number>>;
 }
@@ -12,7 +13,7 @@ interface Props {
 const ListsPagination: FC<Props> = (props) => {
     const {
         placeholderData,
-        movies,
+        contents,
         page,
         setPage
     } = props
@@ -28,11 +29,11 @@ const ListsPagination: FC<Props> = (props) => {
             <p>Страница {page}</p>
             <AppButton
                 onClick={() => {
-                    if (!placeholderData && movies && movies.length === 20) {
+                    if (!placeholderData && contents && contents.length === 20) {
                         setPage((old) => old + 1)
                     }
                 }}
-                disabled={placeholderData && (movies && movies.length === 20)}
+                disabled={placeholderData && (contents && contents.length === 20)}
             >
                 <AppIcon name="arrow" className="w-8 rotate-180 text-basic" />
             </AppButton>

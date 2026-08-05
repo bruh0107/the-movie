@@ -27,3 +27,25 @@ export const useDetailTV = (series_id: number) => {
         enabled: typeof series_id === 'number' && !isNaN(series_id)
     })
 }
+
+export const useFavoriteTV = (page?: number) => {
+    const session_id = useAuth(state => state.session_id)
+
+    return useQuery({
+        queryKey: ['favorite-tv', page],
+        queryFn: () => tvService.getFavoriteTV(session_id, page),
+        placeholderData: keepPreviousData,
+        enabled: !!session_id
+    })
+}
+
+export const useWatchlistTV = (page?: number) => {
+    const session_id = useAuth(state => state.session_id)
+
+    return useQuery({
+        queryKey: ['watchlist-tv', page],
+        queryFn: () => tvService.getWatchlistTV(session_id, page),
+        placeholderData: keepPreviousData,
+        enabled: !!session_id
+    })
+}

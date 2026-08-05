@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
-import { ApprovedPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
-import { ProfileFavoriteMovie, ProfileWatchlist } from "@/widgets/profile";
-import CatalogPage from "@/pages/catalog/CatalogPage.tsx";
-import { MovieCatalog } from "@/widgets/movie";
+import { ApprovedPage, CatalogPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
+import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
+import { FavoriteMovies, MovieCatalog, WatchlistMovies } from "@/widgets/movie";
 import { TVCatalog } from "@/widgets/tv";
+import { FavoriteTV } from "@/widgets/tv/favorite";
+import { WatchlistTV } from "@/widgets/tv/watchlist";
 
 export const router = createBrowserRouter([
     {
@@ -25,15 +26,35 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ProfileFavoriteMovie />
+                        element: <ProfileFavorite />
                     },
                     {
                         path: 'favorite',
-                        element: <ProfileFavoriteMovie />
+                        element: <ProfileFavorite />,
+                        children: [
+                            {
+                                path: 'movies',
+                                element: <FavoriteMovies />
+                            },
+                            {
+                                path: 'tv',
+                                element: <FavoriteTV />
+                            }
+                        ]
                     },
                     {
                         path: 'watchlist',
-                        element: <ProfileWatchlist />
+                        element: <ProfileWatchlist />,
+                        children: [
+                            {
+                                path: 'movies',
+                                element: <WatchlistMovies />
+                            },
+                            {
+                                path: 'tv',
+                                element: <WatchlistTV />
+                            }
+                        ]
                     }
                 ]
             },

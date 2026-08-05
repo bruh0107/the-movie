@@ -40,7 +40,7 @@ export const useFavoriteMovies = (page?: number) => {
     const session_id = useAuth(state => state.session_id)
 
     return useQuery({
-        queryKey: ['favorite-movie', page],
+        queryKey: ['favorite-movies', page],
         queryFn: () => movieService.getFavoriteMovies(session_id, page),
         placeholderData: keepPreviousData,
         enabled: !!session_id
@@ -51,7 +51,7 @@ export const useWatchlistMovies = (page?: number) => {
     const session_id = useAuth(state => state.session_id)
 
     return useQuery({
-        queryKey: ['watchlist', page],
+        queryKey: ['watchlist-movies', page],
         queryFn: () => movieService.getWatchlistMovies(session_id, page),
         placeholderData: keepPreviousData,
         enabled: !!session_id

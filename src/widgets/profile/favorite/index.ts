@@ -1,1 +1,1 @@
-export { default as ProfileFavoriteMovie } from './ui/ProfileFavoriteMovie.tsx'
+export { default as ProfileFavorite } from './ui/ProfileFavorites.tsx'
