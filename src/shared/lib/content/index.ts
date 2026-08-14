@@ -19,9 +19,9 @@ export const contentOriginalTitle = (content: ContentType) => {
     return (("original_title" in content && content.original_title) || ("original_name" in content && content.original_name)) ?? ''
 }
 
-export const formatBudget = (content: ContentType) => {
-    const num = (("budget" in content && content.budget) || ("revenue" in content && content.revenue) )
-    return !num ? '-' : new Intl.NumberFormat('ru-RU').format(num)
+export const formatPrice = (amount?: number) => {
+    if (!amount || amount === 0) return '-';
+    return `$${new Intl.NumberFormat('ru-RU').format(amount)}`;
 }
 
 export const formatRuntime = (content: ContentType) => {
@@ -32,3 +32,9 @@ export const formatRuntime = (content: ContentType) => {
     const mins = runtime % 60;
     return `${hours} ч ${mins} мин`;
 }
+
+export const formatDate = (dateString: string) => {
+    if (!dateString) return '-';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('ru-RU').format(date);
+};

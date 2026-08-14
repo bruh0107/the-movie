@@ -1,9 +1,4 @@
-import type { PaginatedResponse, ProductionCompany, ProductionCountry, SpokenLanguage } from "@/shared/api";
-
-export interface Genre {
-    id: number
-    name: string
-}
+import type { Genre, PaginatedResponse, ProductionCompany, ProductionCountry, SpokenLanguage } from "@/shared/api";
 
 export type MoviesResponse = PaginatedResponse<Movie>
 

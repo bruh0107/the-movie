@@ -1,7 +1,7 @@
 import type { DetailMovie } from "@/entities/movie";
 import type { TVShowDetail } from "@/entities/tv";
 import type { FC } from "react";
-import { contentDateRelease, formatBudget, formatRuntime } from "@/shared/lib";
+import { contentDateRelease, formatPrice, formatRuntime } from "@/shared/lib";
 
 interface Props {
     content: DetailMovie | TVShowDetail;
@@ -53,9 +53,19 @@ const ContentInfo: FC<Props> = ({ content, isTV }) => {
 
                     <p>{content?.tagline ? content.tagline : '-'}</p>
 
-                    <p>{isTV ? ("status" in content ? content.status : '-') : `$${formatBudget(content)}`}</p>
+                    <p>
+                        {isTV
+                            ? ("status" in content ? content.status : '-')
+                            : formatPrice("budget" in content ? (content.budget ?? 0) : 0)
+                        }
+                    </p>
 
-                    <p>{isTV ? ("type" in content ? content.type : '-') : `$${formatBudget(content)}`}</p>
+                    <p>
+                        {isTV
+                            ? ("type" in content ? content.type : '-')
+                            : formatPrice("revenue" in content ? content.revenue : 0)
+                        }
+                    </p>
 
                     <p>{isTV ? renderNetworks() : formatRuntime(content)}</p>
 

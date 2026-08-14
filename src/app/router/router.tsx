@@ -1,11 +1,9 @@
+import { ApprovedPage, CatalogPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
+import { FavoriteMovies, MovieCatalog, WatchlistMovies } from "@/widgets/movie";
+import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
+import { TVCatalog, FavoriteTV, WatchlistTV } from "@/widgets/tv";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { DefaultLayout } from "@/app/layouts";
-import { ApprovedPage, CatalogPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
-import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
-import { FavoriteMovies, MovieCatalog, WatchlistMovies } from "@/widgets/movie";
-import { TVCatalog } from "@/widgets/tv";
-import { FavoriteTV } from "@/widgets/tv/favorite";
-import { WatchlistTV } from "@/widgets/tv/watchlist";
 
 export const router = createBrowserRouter([
     {

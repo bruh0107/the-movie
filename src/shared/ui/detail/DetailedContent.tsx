@@ -1,17 +1,28 @@
 import type { FC } from "react";
-import { type TVShowDetail, useTVAccountStates } from "@/entities/tv";
-import { type DetailMovie, useAddToFavorite, useAddToWatchlist, useMovieAccountStates } from "@/entities/movie";
-import { ContentDetailButtons, ContentInfo, ContentPoster } from "@/shared/ui";
+import { type TVShow, type TVShowDetail, useTVAccountStates } from "@/entities/tv";
+import {
+    type DetailMovie,
+    type Movie,
+    useAddToFavorite,
+    useAddToWatchlist,
+    useMovieAccountStates
+} from "@/entities/movie";
+import { ContentDetailButtons, ContentInfo, ContentPoster, ContentSimilar } from "@/shared/ui";
 import { contentDateRelease, contentOriginalTitle, contentTitle } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 import { useIsAuth } from "@/entities/account";
+import ContentCredits from "./ContentCredits.tsx";
+import type { Credits } from "@/shared/api";
 
 interface Props {
     content: TVShowDetail | DetailMovie
+    similar: TVShow[] | Movie[] | undefined
+    credits: Credits | undefined
     isTV: boolean
+    path: 'movie' | 'tv'
 }
 
-const DetailedContent: FC<Props> = ({ content, isTV }) => {
+const DetailedContent: FC<Props> = ({ content, isTV, similar, path, credits }) => {
     const { id } = useParams<{ id: string }>()
     const contentId = id ? Number(id) : 0
     const isAuth = useIsAuth()
@@ -71,7 +82,9 @@ const DetailedContent: FC<Props> = ({ content, isTV }) => {
 
                             <ContentInfo content={content} isTV={isTV} />
                         </div>
+                        <ContentSimilar contents={similar} isTV={isTV} path={path} />
                     </div>
+                    <ContentCredits contents={credits} />
                 </div>
             </section>
         )

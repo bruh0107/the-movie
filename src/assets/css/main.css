@@ -54,7 +54,8 @@ button:disabled {
     padding-inline: 16px;
     padding-block: 8px;
     border-radius: 12px;
-    border: none
+    border: none;
+    width: 100%;
 }
 
 .loader {

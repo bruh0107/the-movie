@@ -1,9 +1,4 @@
-import type { PaginatedResponse, ProductionCompany, ProductionCountry, SpokenLanguage } from "@/shared/api";
-
-export interface Genre {
-    id: number
-    name: string
-}
+import type { Genre, PaginatedResponse, ProductionCompany, ProductionCountry, SpokenLanguage } from "@/shared/api";
 
 export interface CreatedBy {
     id: number
@@ -35,17 +30,6 @@ export interface Networks {
     origin_country: string
 }
 
-export interface Season {
-    id: number
-    air_date: string
-    episode_count: number
-    name: string
-    overview: string
-    poster_path: string | undefined
-    season_number: number
-    vote_average: number
-}
-
 export interface BasicTVShow {
     backdrop_path: string
     first_air_date: string
@@ -59,6 +43,17 @@ export interface BasicTVShow {
     poster_path: string
     vote_average: number
     vote_count: number
+}
+
+export interface Season {
+    id: number
+    air_date: string
+    episode_count: number
+    name: string
+    overview: string
+    poster_path: string | undefined
+    season_number: number
+    vote_average: number
 }
 
 export interface TVShow extends BasicTVShow {
@@ -95,9 +90,6 @@ export type TVSortBy =
     | 'popularity.asc'
     | 'vote_average.desc'
     | 'vote_average.asc'
-    | 'first_air_date.desc'
-    | 'first_air_date.asc'
-    | 'vote_count.desc'
 
 export interface TVFilterParams {
     page: number

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import {
-    useMovie,
+    useMovie, useMovieCredits, useSimilarMovies,
 } from "@/entities/movie"
 import { DetailedContent } from "@/shared/ui";
 
@@ -9,6 +9,8 @@ const MovieDetail = () => {
     const movieId = id ? Number(id) : 0
 
     const { data: movie, isLoading } = useMovie(movieId)
+    const { data: similarMovie } = useSimilarMovies(movieId)
+    const { data: movieCredits } = useMovieCredits(movieId)
 
     if (isLoading) {
         return <div className="loader" />;
@@ -19,7 +21,13 @@ const MovieDetail = () => {
     }
 
     return (
-        <DetailedContent content={movie} isTV={false} />
+        <DetailedContent
+            content={movie}
+            isTV={false}
+            similar={similarMovie}
+            path="movie"
+            credits={movieCredits}
+        />
     );
 };
 

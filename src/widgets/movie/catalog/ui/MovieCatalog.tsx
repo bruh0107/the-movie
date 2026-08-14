@@ -1,7 +1,7 @@
 import { type Dispatch, type SetStateAction, useState } from "react"
 import { type FilterParams, useDiscoverMovie, useSearchMovie } from "@/entities/movie"
 import { ContentItem, ListsPagination } from "@/shared/ui"
-import { MovieFilter } from "@/features/movie";
+import { ContentFilter } from "@/features/filter"
 import { useDebounce } from "@/shared/lib";
 
 const MovieCatalog = () => {
@@ -42,11 +42,12 @@ const MovieCatalog = () => {
 
     return (
         <>
-            <MovieFilter
+            <ContentFilter
                 filters={filters}
                 setFilters={setFilters}
                 search={search}
                 setSearch={setSearch}
+                isTV={false}
             />
             <div>
                 {isLoading ? (
@@ -74,7 +75,7 @@ const MovieCatalog = () => {
                     placeholderData={isPlaceholderData}
                     page={filters.page ?? 1}
                     setPage={handlePageChange}
-                    movies={movies}
+                    contents={movies}
                 />
             )}
         </>

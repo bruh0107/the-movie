@@ -1,9 +1,9 @@
-import { type AccountStatesResponse, api } from "@/shared/api";
+import { type AccountStatesResponse, api, type Credits, type Genre } from "@/shared/api";
 import type {
     DetailMovie,
     ExtendedMoviesResponse,
     FavoriteBody,
-    FilterParams, Genre, Language,
+    FilterParams, Language,
     MoviesResponse, VideosResponse,
     WatchlistBody
 } from "@/entities/movie";
@@ -58,7 +58,7 @@ export const movieService = {
             }
         }).then((res) => res.data),
 
-    getGenres: () =>
+    getMovieGenres: () =>
         api.get<{ genres: Genre[] }>('genre/movie/list', {
             params: { language: 'ru-RU'}
         }).then(res => res.data.genres),
@@ -91,4 +91,14 @@ export const movieService = {
 
     getMovieVideos: (movie_id: number) =>
         api.get<VideosResponse>(`movie/${movie_id}/videos`).then(res => res.data.results),
+
+    getSimilarMovies: (movie_id: number) =>
+        api.get<MoviesResponse>(`/movie/${movie_id}/similar`).then(res => res.data.results),
+
+    getMovieCredits: (movie_id: number) =>
+        api.get<Credits>(`movie/${movie_id}/credits`, {
+            params: {
+                language: 'ru-RU'
+            }
+        }).then(res => res.data)
 }

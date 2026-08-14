@@ -126,10 +126,10 @@ export const useDiscoverMovie = (params?: FilterParams) => {
     })
 }
 
-export const useGenres = () => {
+export const useMovieGenres = () => {
     return useQuery({
-        queryKey: ['genres'],
-        queryFn: () => movieService.getGenres(),
+        queryKey: ['movie-genres'],
+        queryFn: () => movieService.getMovieGenres(),
         staleTime: Infinity,
     })
 }
@@ -156,5 +156,20 @@ export const useMovieVideos = (movie_id: number) => {
         queryKey: ['movie-videos', movie_id],
         queryFn: () => movieService.getMovieVideos(movie_id),
         enabled: !!movie_id
+    })
+}
+
+export const useSimilarMovies = (movie_id: number) => {
+    return useQuery({
+        queryKey: ['similar-movie', movie_id],
+        queryFn: () => movieService.getSimilarMovies(movie_id),
+        enabled: typeof movie_id === 'number' && !isNaN(movie_id)
+    })
+}
+
+export const useMovieCredits = (movie_id: number) => {
+    return useQuery({
+        queryKey: ['movie-credits', movie_id],
+        queryFn: () => movieService.getMovieCredits(movie_id),
     })
 }

@@ -16,7 +16,7 @@ const ContentPoster: FC<Props> = ({ content, isTV }) => {
             <img
                 className="w-full rounded-2xl"
                 src={content?.poster_path ? getStorageUrl(content?.poster_path) : '/no-poster.png'}
-                alt=""
+                alt={`photo ${content.id}`}
             />
             <div className="border border-accent rounded-xl flex justify-between items-center p-3">
                 <div className="flex gap-1 items-center">

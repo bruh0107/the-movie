@@ -1,11 +1,14 @@
 import { DetailedContent } from "@/shared/ui";
-import { useDetailTV } from "@/entities/tv";
+import { useDetailTV, useSimilarTV, useTVCredits } from "@/entities/tv";
 import { useParams } from "react-router-dom";
+import { TVSeasons } from "@/widgets/tv";
 
 const TVDetail = () => {
     const { id } = useParams<{ id: string }>()
     const seriesId = id ? Number(id) : 0
     const { data: tv, isLoading } = useDetailTV(seriesId)
+    const { data: similarTV } = useSimilarTV(seriesId)
+    const { data: tvCredits } = useTVCredits(seriesId)
 
     if (isLoading) {
         return <div className="loader" />;
@@ -16,10 +19,18 @@ const TVDetail = () => {
     }
 
     return (
-        <DetailedContent
-            content={tv}
-            isTV={true}
-        />
+        <div>
+            <DetailedContent
+                content={tv}
+                similar={similarTV}
+                isTV={true}
+                path="tv"
+                credits={tvCredits}
+            />
+            <TVSeasons
+                seasons={tv.seasons}
+            />
+        </div>
     )
 }
 
