@@ -3,6 +3,7 @@ import {
     useMovie, useMovieCredits, useSimilarMovies,
 } from "@/entities/movie"
 import { DetailedContent } from "@/shared/ui";
+import { useTitle } from "@/shared/lib";
 
 const MovieDetail = () => {
     const { id } = useParams<{ id: string }>()
@@ -11,6 +12,8 @@ const MovieDetail = () => {
     const { data: movie, isLoading } = useMovie(movieId)
     const { data: similarMovie } = useSimilarMovies(movieId)
     const { data: movieCredits } = useMovieCredits(movieId)
+
+    useTitle(movie ? `${movie.title} (${movie.release_date?.slice(0, 4)})` : "Загрузка фильма...")
 
     if (isLoading) {
         return <div className="loader" />;

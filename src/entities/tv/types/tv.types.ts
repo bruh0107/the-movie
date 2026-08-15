@@ -1,4 +1,12 @@
-import type { Genre, PaginatedResponse, ProductionCompany, ProductionCountry, SpokenLanguage } from "@/shared/api";
+import type {
+    Actor,
+    Crew,
+    Genre,
+    PaginatedResponse,
+    ProductionCompany,
+    ProductionCountry,
+    SpokenLanguage
+} from "@/shared/api";
 
 export interface CreatedBy {
     id: number
@@ -102,4 +110,35 @@ export interface TVFilterParams {
     with_original_language?: string
     with_status?: string
     with_type?: string
+}
+
+export interface Episode {
+    id: number
+    air_date: string
+    episode_number: number
+    episode_type: string
+    name: string
+    overview: string
+    production_code: string
+    runtime: number
+    season_number: number
+    show_id: number
+    still_path: string
+    vote_average: string
+    vote_count: number
+    crew: Crew[]
+    guest_stars: Actor[]
+}
+
+export interface SeasonDetail {
+    _id: string
+    air_date: string
+    episodes: Episode[]
+    name: string
+    networks: Networks[]
+    overview: string
+    id: number
+    poster_path: string | undefined
+    season_number: number
+    vote_average: number
 }

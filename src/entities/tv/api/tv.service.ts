@@ -1,5 +1,5 @@
 import { type AccountStatesResponse, api, type Credits, type Genre } from "@/shared/api";
-import type { TVFilterParams, TVShowDetail, TVShowResponse } from "@/entities/tv";
+import type { SeasonDetail, TVFilterParams, TVShowDetail, TVShowResponse } from "@/entities/tv";
 
 export const tvService = {
     getDiscoverTV: (params?: TVFilterParams) =>
@@ -71,5 +71,13 @@ export const tvService = {
             params: {
                 language: 'ru-RU'
             }
-        }).then(res => res.data)
+        }).then(res => res.data),
+
+    getSeasonDetail: (series_id: number, season_number: number) =>
+        api.get<SeasonDetail>(`tv/${series_id}/season/${season_number}`, {
+            params: {
+                language: 'ru-RU'
+            }
+        }).then(res => res.data.episodes)
+
 }

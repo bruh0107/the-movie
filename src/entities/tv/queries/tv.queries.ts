@@ -81,3 +81,11 @@ export const useTVCredits = (series_id: number) => {
         queryFn: () => tvService.getTVCredits(series_id),
     })
 }
+
+export const useSeasonDetail = (series_id: number, season_number: number, isEnabled: boolean = true) => {
+    return useQuery({
+        queryKey: ['tv-season-detail', series_id, season_number],
+        queryFn: () => tvService.getSeasonDetail(series_id, season_number),
+        enabled: isEnabled && Boolean(series_id) && typeof season_number === 'number',
+    })
+}
