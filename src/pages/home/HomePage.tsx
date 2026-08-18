@@ -1,4 +1,4 @@
-import { HomeBanner, NowPlayingMovies, TrendMovies, UpcomingMovies } from "@/widgets/home";
+import { HomeBanner, NowPlayingMovies } from "@/widgets/home";
 import { useTitle } from "@/shared/lib";
 
 const HomePage = () => {
@@ -7,9 +7,7 @@ const HomePage = () => {
     return (
         <div className="flex flex-col gap-30">
             <HomeBanner />
-            <TrendMovies />
             <NowPlayingMovies />
-            <UpcomingMovies />
         </div>
     )
 }

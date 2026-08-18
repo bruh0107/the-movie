@@ -173,3 +173,10 @@ export const useMovieCredits = (movie_id: number) => {
         queryFn: () => movieService.getMovieCredits(movie_id),
     })
 }
+
+export const useTopRatedMovie = (page: number = 1) => {
+    return useQuery({
+        queryKey: ['top-rated-movie', page],
+        queryFn: () => movieService.getTopRatedMovie(page)
+    })
+}

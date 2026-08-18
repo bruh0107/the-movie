@@ -1,0 +1,1 @@
+export { default as TopRatedList } from './ui/TopRatedList.tsx'

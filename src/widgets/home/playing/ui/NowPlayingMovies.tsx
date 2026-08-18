@@ -8,8 +8,8 @@ const NowPlayingMovies = () => {
         <MovieCarousel
             movies={nowPlayingMovies}
             title="Сейчас в кино!"
-            description="Не пропустите то, что сейчас идет в кино. Сходите обязательно!"
-            isRight={true}
+            description="Не пропустите то, что сейчас идет в кино!"
+            isRight={false}
         />
     )
 }

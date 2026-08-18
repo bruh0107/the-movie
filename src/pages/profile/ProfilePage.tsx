@@ -1,6 +1,6 @@
 import { ProfileDetail } from "@/widgets/profile";
 import { Outlet } from "react-router-dom";
-import { MovieTabs } from "@/features/tabs";
+import { ProfileTabs } from "@/features/profile";
 import { useTitle } from "@/shared/lib";
 
 const ProfilePage = () => {
@@ -10,7 +10,7 @@ const ProfilePage = () => {
         <div className="py-30">
             <div className="main-container">
                 <ProfileDetail className="mb-10" />
-                <MovieTabs />
+                <ProfileTabs />
                 <Outlet />
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 
-const MovieTabs = () => {
+const ProfileTabs = () => {
     const location = useLocation()
     const currentPath = location.pathname
 
@@ -42,4 +42,4 @@ const MovieTabs = () => {
     )
 }
 
-export default MovieTabs;
+export default ProfileTabs;

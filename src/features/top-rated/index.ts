@@ -1,0 +1,1 @@
+export { default as TopRatedTabs } from './ui/TopRatedTabs.tsx'

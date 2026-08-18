@@ -78,6 +78,13 @@ export const tvService = {
             params: {
                 language: 'ru-RU'
             }
-        }).then(res => res.data.episodes)
+        }).then(res => res.data.episodes),
 
+    getTopRatedTV: (page: number = 1) =>
+        api.get<TVShowResponse>('tv/top_rated', {
+            params: {
+                language: 'ru-RU',
+                page
+            }
+        }).then(res => res.data.results)
 }

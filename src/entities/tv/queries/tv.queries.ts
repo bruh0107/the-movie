@@ -89,3 +89,10 @@ export const useSeasonDetail = (series_id: number, season_number: number, isEnab
         enabled: isEnabled && Boolean(series_id) && typeof season_number === 'number',
     })
 }
+
+export const useTopRatedTV = (page: number = 1) => {
+    return useQuery({
+        queryKey: ['top-rated-tv', page],
+        queryFn: () => tvService.getTopRatedTV(page),
+    })
+}

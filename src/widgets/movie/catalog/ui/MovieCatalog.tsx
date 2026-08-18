@@ -2,9 +2,11 @@ import { type Dispatch, type SetStateAction, useState } from "react"
 import { type FilterParams, useDiscoverMovie, useSearchMovie } from "@/entities/movie"
 import { ContentItem, ListsPagination } from "@/shared/ui"
 import { ContentFilter } from "@/features/filter"
-import { useDebounce } from "@/shared/lib";
+import { useDebounce, useTitle } from "@/shared/lib";
 
 const MovieCatalog = () => {
+    useTitle("Каталог фильмов")
+
     const [filters, setFilters] = useState<FilterParams>({
         sort_by: 'popularity.desc',
         include_adult: false,

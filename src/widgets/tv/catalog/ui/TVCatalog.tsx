@@ -2,9 +2,11 @@ import { type TVFilterParams, useDiscoverTV, useSearchTV } from "@/entities/tv";
 import { ContentItem, ListsPagination } from "@/shared/ui";
 import { ContentFilter } from "@/features/filter";
 import { type Dispatch, type SetStateAction, useState } from "react";
-import { useDebounce } from "@/shared/lib";
+import { useDebounce, useTitle } from "@/shared/lib";
 
 const TVCatalog = () => {
+    useTitle("Каталог сериалов")
+
     const [filters, setFilters] = useState<TVFilterParams>({
         sort_by: 'popularity.desc',
         page: 1

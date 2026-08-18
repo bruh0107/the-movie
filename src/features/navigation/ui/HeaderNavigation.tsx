@@ -6,8 +6,8 @@ const HeaderNavigation = () => {
             <Link to="/">Главная</Link>
             <Link to="/catalog/movies">Фильмы</Link>
             <Link to="/catalog/tv">Сериалы</Link>
-            <a href="">Актеры</a>
-            <a href="">Случайный фильм</a>
+            <Link to="/top">Топ-250</Link>
+            <a href="">Скоро</a>
         </nav>
     );
 };

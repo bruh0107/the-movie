@@ -100,5 +100,13 @@ export const movieService = {
             params: {
                 language: 'ru-RU'
             }
-        }).then(res => res.data)
+        }).then(res => res.data),
+
+    getTopRatedMovie: (page: number = 1) =>
+        api.get<MoviesResponse>('movie/top_rated', {
+            params: {
+                language: 'ru-RU',
+                page
+            }
+        }).then(res => res.data.results)
 }

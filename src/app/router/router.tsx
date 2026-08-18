@@ -1,4 +1,13 @@
-import { ApprovedPage, CatalogPage, HomePage, MoviePage, ProfilePage, TVPage } from "@/pages";
+import {
+    ApprovedPage,
+    CatalogPage,
+    HomePage,
+    MoviePage,
+    NotFoundPage,
+    ProfilePage,
+    TopRatedPage,
+    TVPage
+} from "@/pages";
 import { FavoriteMovies, MovieCatalog, WatchlistMovies } from "@/widgets/movie";
 import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
 import { TVCatalog, FavoriteTV, WatchlistTV } from "@/widgets/tv";
@@ -75,7 +84,7 @@ export const router = createBrowserRouter([
                     {
                         path: 'tv',
                         element: <TVCatalog />
-                    }
+                    },
                 ]
             },
             {
@@ -85,6 +94,14 @@ export const router = createBrowserRouter([
             {
                 path: '/tv/:id',
                 element: <TVPage />
+            },
+            {
+                path: 'top',
+                element: <TopRatedPage />
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />
             }
         ]
     }

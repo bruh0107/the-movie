@@ -1,1 +1,0 @@
-export { default as MovieTabs } from './ui/MovieTabs.tsx'

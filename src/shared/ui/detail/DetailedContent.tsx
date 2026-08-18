@@ -57,7 +57,7 @@ const DetailedContent: FC<Props> = ({ content, isTV, similar, path, credits }) =
     };
 
     return (
-        isAuth && (
+
             <section className="py-10">
                 <div className="main-container">
                     <div className="flex gap-10">
@@ -70,16 +70,16 @@ const DetailedContent: FC<Props> = ({ content, isTV, similar, path, credits }) =
                                 <p>{contentOriginalTitle(content)} {content?.adult && '18+'}</p>
                                 <p className="max-w-200">{content?.overview}</p>
                             </article>
-
-                            <ContentDetailButtons
-                                isFavorite={isFavorite}
-                                isWatchlist={isWatchlist}
-                                onToggleFavorite={handleToggleFavorite}
-                                onToggleWatchlist={handleToggleWatchlist}
-                                pendingFavorite={isPendingFavorite}
-                                pendingWatchlist={isPendingWatchlist}
-                            />
-
+                            {
+                                isAuth && <ContentDetailButtons
+                                    isFavorite={isFavorite}
+                                    isWatchlist={isWatchlist}
+                                    onToggleFavorite={handleToggleFavorite}
+                                    onToggleWatchlist={handleToggleWatchlist}
+                                    pendingFavorite={isPendingFavorite}
+                                    pendingWatchlist={isPendingWatchlist}
+                                />
+                            }
                             <ContentInfo content={content} isTV={isTV} />
                         </div>
                         <ContentSimilar contents={similar} isTV={isTV} path={path} />
@@ -87,7 +87,7 @@ const DetailedContent: FC<Props> = ({ content, isTV, similar, path, credits }) =
                     <ContentCredits contents={credits} />
                 </div>
             </section>
-        )
+
     )
 }
 
