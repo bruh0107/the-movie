@@ -7,7 +7,7 @@ const HeaderNavigation = () => {
             <Link to="/catalog/movies">Фильмы</Link>
             <Link to="/catalog/tv">Сериалы</Link>
             <Link to="/top">Топ-250</Link>
-            <a href="">Скоро</a>
+            <Link to="/upcoming">Скоро</Link>
         </nav>
     );
 };

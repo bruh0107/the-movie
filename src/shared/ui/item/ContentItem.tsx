@@ -8,11 +8,11 @@ import { contentDateRelease, contentTitle } from "@/shared/lib";
 
 interface Props {
     content: Movie | TVShow
-    path: string
+    path: string | undefined
 }
 
 const ContentItem: FC<Props> = ({ content, path }) => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`
+    const cleanPath = path?.startsWith('/') ? path : `/${path}`
     const targetUrl = `${cleanPath}/${content.id}`
 
     return (

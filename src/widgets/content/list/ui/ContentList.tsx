@@ -6,12 +6,12 @@ import { ContentItem } from "@/shared/ui";
 
 interface Props {
     items: (Movie | TVShow)[] | undefined
-    type: TopRatedType
+    type?: TopRatedType
     page: number
     isLoading: boolean
 }
 
-const TopRatedList: FC<Props> = ({ items, type, isLoading }) => {
+const ContentList: FC<Props> = ({ items, type, isLoading }) => {
     if (isLoading) {
         return <div className="loader mx-auto my-12" />;
     }
@@ -36,4 +36,4 @@ const TopRatedList: FC<Props> = ({ items, type, isLoading }) => {
     )
 }
 
-export default TopRatedList
+export default ContentList

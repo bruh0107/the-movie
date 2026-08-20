@@ -21,10 +21,11 @@ export const useNowPlayingMovies = () => {
     })
 }
 
-export const useUpcomingMovies = () => {
+export const useUpcomingMovies = (page: number = 1) => {
     return useQuery({
-        queryKey: ['upcoming-movies'],
-        queryFn: () => movieService.getUpcomingMovies()
+        queryKey: ['upcoming-movies', page],
+        queryFn: () => movieService.getUpcomingMovies(page),
+        placeholderData: keepPreviousData
     })
 }
 

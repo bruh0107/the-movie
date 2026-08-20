@@ -3,7 +3,7 @@ import type { TopRatedType } from "@/features/top-rated/ui/TopRatedTabs.tsx";
 import { useTitle } from "@/shared/lib";
 import { useTopRatedMovie } from "@/entities/movie";
 import { useTopRatedTV } from "@/entities/tv";
-import { TopRatedList } from "@/widgets/top-rated";
+import { ContentList } from "@/widgets/content";
 import { TopRatedTabs } from "@/features/top-rated";
 import { ListsPagination } from "@/shared/ui";
 import { useState } from "react";
@@ -44,7 +44,7 @@ const TopRatedPage = () => {
                 />
             </div>
 
-            <TopRatedList
+            <ContentList
                 items={items}
                 type={activeTab}
                 page={currentPage}

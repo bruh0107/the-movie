@@ -6,7 +6,7 @@ import {
     NotFoundPage,
     ProfilePage,
     TopRatedPage,
-    TVPage
+    TVPage, UpcomingPage
 } from "@/pages";
 import { FavoriteMovies, MovieCatalog, WatchlistMovies } from "@/widgets/movie";
 import { ProfileFavorite, ProfileWatchlist } from "@/widgets/profile";
@@ -98,6 +98,10 @@ export const router = createBrowserRouter([
             {
                 path: 'top',
                 element: <TopRatedPage />
+            },
+            {
+                path: 'upcoming',
+                element: <UpcomingPage />
             },
             {
                 path: '*',

@@ -13,10 +13,19 @@ export const movieService = {
         api.get<MoviesResponse>(`/trending/movie/${time_window}`).then((res) => res.data.results),
 
     getNowPlayingMovies: () =>
-        api.get<ExtendedMoviesResponse>('movie/now_playing').then((res) => res.data.results),
+        api.get<ExtendedMoviesResponse>('movie/now_playing', {
+            params: {
+                language: 'ru-RU'
+            }
+        }).then((res) => res.data.results),
 
-    getUpcomingMovies: () =>
-        api.get<ExtendedMoviesResponse>('movie/upcoming').then((res) => res.data.results),
+    getUpcomingMovies: (page: number = 1) =>
+        api.get<ExtendedMoviesResponse>('movie/upcoming', {
+            params: {
+                language: 'ru-RU',
+                page
+            }
+        }).then((res) => res.data.results),
 
     getMovie: (movie_id: number) =>
         api.get<DetailMovie>(`movie/${movie_id}`).then((res) => res.data),
